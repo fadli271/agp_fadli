@@ -122,10 +122,12 @@ $(document).on('pageinit', '#index', function(){
             "begin": new Date(y, 7, 01),
             "end": new Date(y, 7, 02)
             
+        },{
+            "ringkasan": "Pendaftaran Mahasiswa Baru",
+            "begin": new Date(y, 8, 22),
+            "end": new Date(y, 8, 23)
+            
         },                      
-
-
-
         ],
         months: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
         days: ["Mi", "Se", "Sel", "Ra", "Ka", "Ju", "Sa"],
@@ -148,4 +150,17 @@ $(document).on('pageinit', '#index', function(){
             }
         }
     });
+
+    $("#goSearch").click(function(){
+		var t = $("#tanggal").val();
+		var b = $("#bulan").val();
+		var th = $("#tahun").val();
+		if (t=="" && b=="" && th==""){
+			$.mobile.changePage("#dialog", { role: "dialog" } );
+			$("#isiPeristiwa").html("<p>Maaf Anda Belum Melengkapi Pilihan</p>");
+		}
+		else{
+			$("#calendar").trigger('refresh', new Date(th+"-"+b+"-"+t+""));
+		}
+	});
 });
